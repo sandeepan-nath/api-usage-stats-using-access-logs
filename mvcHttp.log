@@ -1,0 +1,20 @@
+[2018-10-23 19:17:50.789] [DEBUG] httpRequest - ::1 - POST /merchant/auth HTTP/1.1 200 291 - 344.856 ms
+
+[2018-10-23 19:17:53.762] [DEBUG] httpRequest - ::1 - GET /merchant/endpoint1?startDate=2018-10-22&endDate=2018-10-31 HTTP/1.1 500 122 - 107.282 ms
+
+[2018-10-23 19:17:58.805] [DEBUG] httpRequest - ::1 - POST /merchant/endpoint2/issue HTTP/1.1 200 101 - 1468.098 ms
+
+[2018-10-23 19:18:39.283] [DEBUG] httpRequest - ::1 - POST /merchant/endpoint2/issue HTTP/1.1 200 101 - 271.714 ms
+
+[2018-10-23 19:18:53.350] [DEBUG] httpRequest - ::1 - GET /merchant/endpoint1?startDate=2018-10-22&endDate=2018-10-31 HTTP/1.1 200 777 - 9.970 ms
+
+[2018-10-23 19:18:59.347] [DEBUG] httpRequest - ::1 - POST /merchant/endpoint3/issue HTTP/1.1 400 140 - 37.116 ms
+
+[2018-10-23 19:19:11.271] [DEBUG] httpRequest - ::1 - POST /merchant/endpoint3/issue HTTP/1.1 200 101 - 303.523 ms
+
+[2018-10-23 19:19:14.382] [DEBUG] httpRequest - ::1 - GET /merchant/endpoint1?startDate=2018-10-22&endDate=2018-10-31 HTTP/1.1 200 777 - 5.521 ms
+
+[2018-10-23 19:20:19.351] [DEBUG] httpRequest - ::1 - GET /merchant/endpoint1?startDate=2018-10-22&endDate=2018-10-31&couponStatus=R HTTP/1.1 200 441 - 11.727 ms
+
+[2018-10-23 19:20:26.095] [DEBUG] httpRequest - ::1 - GET /merchant/endpoint1?startDate=2018-10-22&endDate=2018-10-31&couponStatus=I HTTP/1.1 200 441 - 6.725 ms
+
