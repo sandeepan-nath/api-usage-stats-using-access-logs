@@ -1,0 +1,72 @@
+	var http = require("http");
+
+	http.createServer(function (request, response) {
+
+		var endpoints = ["/merchant/endpoint1", "/merchant/endpoint2/", "/merchant/auth"];
+		
+			var map = {};
+			  require('child_process').exec('grep -c " 200 " mvcHttp.log', function(err,stdout,stderr){
+				   
+				   map["Total 200s"]=stdout.trim();
+					
+					require('child_process').exec('grep -c " 400 " mvcHttp.log', function(err,stdout,stderr){
+						map["Total 400s"]=stdout.trim();
+						
+						require('child_process').exec('grep -c " 500 " mvcHttp.log', function(err,stdout,stderr){
+							map["Total 500s"]=stdout.trim();
+					
+							var command = 'grep -c "'+endpoints[0]+'" mvcHttp.log';
+							map[endpoints[0]]=[];
+							require('child_process').exec(command , function(err,stdout,stderr){
+									var api1Data = {
+										all: stdout.trim()
+									};
+
+									
+									var command = 'grep "'+endpoints[0]+'" mvcHttp.log | grep -c " 200 "';
+									require('child_process').exec(command , function(err,stdout,stderr){
+										api1Data[200]=stdout.trim();
+										
+										var command = 'grep "'+endpoints[0]+'" mvcHttp.log | grep -c " 400 "';
+										require('child_process').exec(command , function(err,stdout,stderr){
+											api1Data[400]=stdout.trim();
+											map[endpoints[0]].push(api1Data);
+										
+											var command = 'grep -c "'+endpoints[1]+'" mvcHttp.log';
+											map[endpoints[1]]=[];
+											require('child_process').exec(command , function(err,stdout,stderr){
+													var api2Data = {
+														all: stdout.trim()
+													};
+													
+												var command = 'grep "'+endpoints[1]+'" mvcHttp.log | grep -c " 200 "';
+												require('child_process').exec(command , function(err,stdout,stderr){
+													api2Data[200]=stdout.trim();
+													
+													var command = 'grep "'+endpoints[1]+'" mvcHttp.log | grep -c " 400 "';
+													require('child_process').exec(command , function(err,stdout,stderr){
+														api2Data[400]=stdout.trim();
+														
+														map[endpoints[1]].push(api2Data);
+														response.writeHead(200, {'Content-Type': 'text/plain'});
+														response.end(JSON.stringify(map));
+													});
+												});
+											});
+										});
+									});
+							});
+						});
+					});
+			  });
+
+			
+
+	   function addValueToList(key, value) {
+			value = value.trim();
+						map[key] = map[key] || [];
+						map[key].push(value);
+	   }
+	}).listen(8081);
+
+	//addValueToList("Total 200s",stdout);
